@@ -12,7 +12,7 @@ async function main() {
     // make sure this address is the address you just deployed
     attacker
   );
-  console.log("--- attacker deposit ---");
+  console.log("--- owner deposit ---");
 
   const txn1 = await vault.connect(owner).deposit({value: AMOUNT});
   await txn1.wait(1);
