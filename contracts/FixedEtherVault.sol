@@ -1,6 +1,5 @@
 pragma solidity 0.6.12;
 
-import "./Dependencies.sol";
 
 // Simplified SafeMath
 library SafeMath {
@@ -19,7 +18,7 @@ library SafeMath {
     }
 }
 
-contract FixedEtherVault is ReentrancyGuard {
+contract FixedEtherVault {
     using SafeMath for uint256;
 
     mapping (address => uint256) private userBalances;
@@ -28,7 +27,7 @@ contract FixedEtherVault is ReentrancyGuard {
         userBalances[msg.sender] = userBalances[msg.sender].add(msg.value);  // FIX: Apply SafeMath
     }
 
-    function withdraw(uint256 _amount) external noReentrant {
+    function withdraw(uint256 _amount) external {
         uint256 balance = getUserBalance(msg.sender);
         require(balance.sub(_amount) >= 0, "Insufficient balance");  // FIX: Apply SafeMath
 
